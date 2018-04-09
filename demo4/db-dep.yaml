@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-db
+  labels:
+    app: hello
+    module: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+      module: db
+  template:
+    metadata:
+      labels:
+        app: hello
+        module: db
+    spec:
+      containers:
+      - name: db
+        image: mongo
+        ports:
+        - containerPort: 27017

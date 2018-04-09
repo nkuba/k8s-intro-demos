@@ -1,0 +1,25 @@
+# Same as kubectl CLI command:
+# 
+# kubectl create deployment --image=nkuba/hello-web:1.0 hello-web
+# 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-web
+  labels:
+    app: hello-web
+spec:
+  selector:
+    matchLabels:
+      app: hello-web
+  template:
+    metadata:
+      labels:
+        app: hello-web
+    spec:
+      containers:
+      - name: hello-web
+        image: nkuba/hello-web:1.0
+        ports:
+        - containerPort: 3080
+        imagePullPolicy: Always

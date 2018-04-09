@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-web
+  labels:
+    app: hello
+    module: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+      module: web
+  template:
+    metadata:
+      labels:
+        app: hello
+        module: web
+    spec:
+      containers:
+      - name: web
+        image: nkuba/hello-web:3.0
+        ports:
+        - containerPort: 4080
+        env:
+        - name: REST_HOST
+          value: 'hello-rest'
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-web
+spec:
+  selector:
+    app: hello
+    module: web
+  type: NodePort
+  ports:
+  - port: 4080
+    nodePort: 30080       #Expose the service on specific Node Port

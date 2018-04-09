@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-rest
+  labels:
+    app: hello
+    module: rest
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello
+      module: rest
+  template:
+    metadata:
+      labels:
+        app: hello
+        module: rest
+    spec:
+      containers:
+      - name: rest
+        image: nkuba/hello-rest:3.0
+        ports:
+        - containerPort: 3080
+        env:
+        - name: DB_HOST
+          value: 'hello-db'
+        - name: DB_PORT
+          value: '27017'
+        - name: ENV_VAR1
+          value: 'Some crazy value'
+        imagePullPolicy: Always
