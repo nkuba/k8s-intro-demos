@@ -1,6 +1,6 @@
 # Kubernetes Intro - Demos
 
-Demos to [name](link) presentation
+Demos for [5 Painless Demos to Get You Started with Kubernetes](https://www.slideshare.net/Amartus/5-painless-demos-to-get-you-started-with-kubernetes-93654420) presentation
 
 ## List of demos:
 
